@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if(count <= 0){
+      document.getElementById("countArea").style.color = 'blue';
+    }
+    else
+      document.getElementById("countArea").style.color = 'red';
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 className="title">Hooks Counter</h1>
+      <h3 id="countArea" className="counter">{count}</h3>
+      <button className="control-buttons" onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+      <button className="control-buttons" onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
     </div>
   );
 }
